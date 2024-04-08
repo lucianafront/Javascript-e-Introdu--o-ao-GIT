@@ -1,167 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título</title>
 </head>
 <body>
-    <style>
-        h1 {
-            color: red;
-            font-size: 24px;
-        }
-
-        h2 {
-            color: blue;
-            font-size: 20px;
-        }
-
-        h3 {
-            color: green;
-            font-size: 18px;
-        }
-
-        h4 {
-            color: orange;
-            font-size: 16px;
-        }
-
-        h5 {
-            color: purple;
-            font-size: 14px;
-        }
-
-        h6 {
-            color: brown;
-            font-size: 12px;
-        }
-
-        p {
-            color: gray;
-            font-size: 16px;
-        }
-
-        strong {
-            font-weight: bold;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            border-left: 2px solid gray;
-            padding-left: 10px;
-        }
-
-        code {
-            font-family: monospace;
-            background-color: lightgray;
-            padding: 2px;
-        }
-
-        pre {
-            font-family: monospace;
-            background-color: lightgray;
-            padding: 10px;
-            white-space: pre-wrap;
-        }
-
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-
-        ol {
-            list-style-type: decimal;
-        }
-
-        ul {
-            list-style-type: disc;
-        }
-    </style>
     <script>
-        setTimeout(function() {
-            var h1 = document.querySelector("h1");
-            h1.style.color = "red";
-            h1.textContent = "Modifiquei com javascript a tag  H1";
 
-            var h2 = document.querySelector("h2");
-            h2.style.color = "blue";
-            h2.textContent = "Modifiquei com javascript a tag  H2";
+    let textTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div', 'a', 'strong', 'em', 'b', 'i', 'u'];
+    
+    for (let i = 0; i < 15; i++) {
+        let tag = textTags[i % textTags.length];
+        let element = document.createElement(tag);
+        element.textContent = "Hello World";
+        element.id = "element" + i;
+        element.name = "element" + i;
+        element.classList.add("element" + i);
+        element.style.color = getRandomColor();
+        element.style.fontSize = Math.floor(Math.random() * 30 + 10) + "px";
 
-            var h3 = document.querySelector("h3");
-            h3.style.color = "green";
-            h3.textContent = "Modifiquei com javascript a tag  H3";
 
-            var h4 = document.querySelector("h4");
-            h4.style.color = "orange";
-            h4.textContent = "Modifiquei com javascript a tag  H4";
+        if (tag === 'strong' || tag === 'em' || tag === 'b' || tag === 'i' || tag === 'u') {
+            let parentElement = document.createElement('p');
+            document.body.appendChild(parentElement);
+            parentElement.appendChild(element);
+        } else {
+            document.body.appendChild(element);
+        }
+    }
 
-            var h5 = document.querySelector("h5");
-            h5.style.color = "purple";
-            h5.textContent = "Modifiquei com javascript a tag  H5";
+    function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
-            var h6 = document.querySelector("h6");
-            h6.style.color = "brown";
-            h6.textContent = "Modifiquei com javascript a tag  H6";
+    setTimeout(() => {
+        
+        let elements = document.querySelectorAll(textTags.join(','));
 
-            var p = document.querySelector("p");
-            p.style.color = "gray";
-            p.textContent = "Modifiquei com javascript a tag  Paragraph";
+        for (let i = 0; i < elements.length; i++) {
 
-            var strong = document.querySelector("strong");
-            strong.textContent = "Modifiquei com javascript a tag  Strong";
+            if (elements[i].tagName === 'STRONG' || elements[i].tagName === 'EM' || elements[i].tagName === 'B' || elements[i].tagName === 'I' || elements[i].tagName === 'U') {
+                let parentElement = document.createElement('p');
+                elements[i].parentNode.insertBefore(parentElement, elements[i]);
+                parentElement.appendChild(elements[i]);
+            }
+            elements[i].textContent = "Novo texto gerado pelo script!";
+            elements[i].style.color = getRandomColor();
+            elements[i].style.fontSize = Math.floor(Math.random() * 30 + 10) + "px";
 
-            var em = document.querySelector("em");
-            em.textContent = "Modifiquei com javascript a tag  Emphasis";
-
-            var blockquote = document.querySelector("blockquote");
-            blockquote.textContent = "Modifiquei com javascript a tag  Blockquote";
-
-            var code = document.querySelector("code");
-            code.textContent = "Modifiquei com javascript a tag  Code";
-
-            var pre = document.querySelector("pre");
-            pre.textContent = "Modifiquei com javascript a tag  Preformatted Text";
-
-            var a = document.querySelector("a");
-            a.style.color = "blue";
-            a.textContent = "Modifiquei com javascript a tag  Link";
-
-            var ol = document.querySelector("ol");
-            ol.innerHTML = "<li>Modifiquei com javascript a tag  Ordered List</li>";
-
-            var ul = document.querySelector("ul");
-            ul.innerHTML = "<li>Modifiquei com javascript a tag  Unordered List</li>";
- 
-  
-        }, 4000);
+        }
+    }, 4000);    
+   
     </script>
-    <!--conteúdo-->
-    <h1>Hello World</h1>
-    <h2>Hello World</h2>
-    <h3>Hello World</h3>
-    <h4>Hello World</h4>
-    <h5>Hello World</h5>
-    <h6>Hello World</h6>
-    <p>Hello World</p>
-    <strong>Hello World</strong>
-    <p>
-        <em>Hello World</em>
-    </p>
-    
-    <blockquote>Hello World</blockquote>
-    <code>Hello World</code>
-    <pre>Hello World</pre>
-    <a href="#">Hello World</a>
-    <ol>
-        <li>Hello World</li>
-    </ol>
-    <ul>
-        <li>Hello World</li>
-    </ul>
-    
 </body>
 </html>
